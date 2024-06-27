@@ -31,9 +31,9 @@ return(
     alignItems:'center'
 
   }}>
- <ButtonCustom text="Login" color="red"/>
- <ButtonCustom text="Register" color="blue"/>
- <ButtonCustom text="Register" color="green"/>
+ <ButtonCustom text="username" color="red"/>
+ <ButtonCustom text="password" color="blue"/>
+ <ButtonCustom text="daftar" color="green"/>
  </View>
 )
  }
