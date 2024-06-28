@@ -1,42 +1,43 @@
-import { StyleSheet,Text,View,TextInput  } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { useFonts } from 'expo-font'
 
-  const ButtonCustom=({text,color})=>{
-return(
-  <View style={{
-    backgroundColor:color,
-    width:250,
-    height:100,
-    borderRadius:10,
-    justifyContent:'center',
-    marginBottom:10,
-  }}>
-  <Text style={{
-    textAlign:'center',
-    color:'white',
-    fontSize:30,
-    fontWeight:'bold',
-
-  }}>
-  {text}
-  </Text>
-</View>
-)
+const App = () => {
+  const [fontloaded] = useFonts({
+    MetropolisBlack : require ('./.expo/assets/fonts/Metropolis-Black.otf'),
+    MetropolisBold : require ('./.expo/assets/fonts/Metropolis-Bold.otf'),
+    MetropolisLight: require ('./.expo/assets/fonts/Metropolis-Light.otf'),
+    MetropolisSemiBold : require ('./.expo/assets/fonts/Metropolis-SemiBold.otf')
+  })
+  if (!fontloaded){
+    return<Text>tidak ditemukan</Text>
   }
- const App=()=>{
-return(
-  <View style={{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center'
+    return (
+    <View style={{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center',
+    }}>
+      <Text style={{
+      fontsFamily:"MetroBlack",
+      fontSize:35
+    }}>font Lebar dan Tebal</Text>
+    <Text style={{
+      fontsFamily:"MetroBold",
+      fontSize:30
+    }}>Font Tebal</Text>
+    <Text style={{
+      fontsFamily:"MetroLight",
+      fontSize:20
+    }}>Font kecil</Text>
+    <Text style={{
+      fontsFamily:"MetroSemiBold",
+      fontSize:25
+    }}>Font Besar dan Tebal</Text>
+    </View>
+  )
+}
 
-  }}>
- <ButtonCustom text="username" color="red"/>
- <ButtonCustom text="password" color="blue"/>
- <ButtonCustom text="daftar" color="green"/>
- </View>
-)
- }
-   
+export default App
 
-export default App;
+const styles = StyleSheet.create({})
