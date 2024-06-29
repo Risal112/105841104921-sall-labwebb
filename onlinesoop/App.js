@@ -1,43 +1,159 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useFonts } from 'expo-font'
+import React from 'react';
+import { StyleSheet, View, Text, TextInput, Image } from 'react-native';
+import { useFonts } from 'expo-font';
 
-const App = () => {
-  const [fontloaded] = useFonts({
-    MetropolisBlack : require ('./.expo/assets/fonts/Metropolis-Black.otf'),
-    MetropolisBold : require ('./.expo/assets/fonts/Metropolis-Bold.otf'),
-    MetropolisLight: require ('./.expo/assets/fonts/Metropolis-Light.otf'),
-    MetropolisSemiBold : require ('./.expo/assets/fonts/Metropolis-SemiBold.otf')
-  })
-  if (!fontloaded){
-    return<Text>tidak ditemukan</Text>
-  }
-    return (
+const ButtonCustom = ({ text, color }) => {
+  return (
     <View style={{
-      flex:1,
-      alignItems:'center',
-      justifyContent:'center',
+      backgroundColor: color,
+      width: '100%',
+      height: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      marginTop: 20,
     }}>
       <Text style={{
-      fontsFamily:"MetroBlack",
-      fontSize:35
-    }}>font Lebar dan Tebal</Text>
-    <Text style={{
-      fontsFamily:"MetroBold",
-      fontSize:30
-    }}>Font Tebal</Text>
-    <Text style={{
-      fontsFamily:"MetroLight",
-      fontSize:20
-    }}>Font kecil</Text>
-    <Text style={{
-      fontsFamily:"MetroSemiBold",
-      fontSize:25
-    }}>Font Besar dan Tebal</Text>
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+      }}>
+        {text}
+      </Text>
     </View>
   )
 }
 
-export default App
+const TextInputCustom = ({ placeholder, typekeyboard }) => {
+  return (
+    <TextInput
+      placeholder={placeholder}
+      keyboardType={typekeyboard}
+      style={{
+        width: '100%',
+        height: 50,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10,
+        marginBottom: 20,
+        paddingLeft: 10,
+        fontSize: 18,
+      }}
+    />
+  )
+}
 
-const styles = StyleSheet.create({})
+const TextInputCostum = ({ placeholder, keyboardType }) => {
+  return (
+    <TextInput
+      placeholder={placeholder}
+      keyboardType={keyboardType}
+      style={{
+        width: 320,
+        height: 60,
+        borderColor: 'gray',
+        borderRadius: 5,
+        marginBottom: 5,
+        paddingLeft: 20,
+        backgroundColor: 'white',
+        fontSize: 15,
+        fontFamily: 'MetroMedium',
+      }}
+    />
+  )
+}
+
+const ButtonCostum = ({ text, color }) => {
+  return (
+    <View style={{
+      backgroundColor: color,
+      width: '100%',
+      height: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      marginTop: 20,
+    }}>
+      <Text style={{
+        fontSize: 20,
+        color: 'white',
+        textAlign: 'center',
+        fontFamily: 'MetroMedium',
+      }}>{text}</Text>
+    </View>
+  )
+}
+
+const App = () => {
+  const [fontsLoaded] = useFonts({
+
+  });
+
+  if (!fontsLoaded) {
+    return <Text>Font tidak ditemukan...</Text>;
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.title}>Sign Up</Text>
+        <View style={styles.form}>
+          <TextInputCostum placeholder="Name" keyboardType="default" />
+          <TextInputCostum placeholder="Email" keyboardType="email-address" />
+          <TextInputCostum placeholder="Password" keyboardType="default" />
+          <View style={{ justifyContent: 'flex-end', flexDirection: 'row', marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, textAlign: 'flex-end', marginLeft: 130, fontFamily: 'MetroMedium' }}>Already have an account?</Text>
+          </View>
+          <ButtonCostum text="SIGN UP" color="#C40C0C" />
+        </View>
+      </View>
+      <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: 'MetroMedium' }}>Or login with social account</Text>
+      <View style ={styles.logoRow}>
+        <View style ={styles.logoContainer}>
+        <Image source={require('./assets/logo-google.png')} style={styles.logo} />
+        </View>
+        <View style ={styles.logoContainer}>
+        <Image source={require('./assets/logo-facebook.webp')} style={styles.logo} />
+        </View>
+      </View>
+    </View>
+  )
+}
+
+export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EEEEEE',
+    padding: 20
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 35,
+    marginBottom: 40,
+    fontFamily: 'MetroBold'
+  },
+  form: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  logoRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20
+  },
+  logoContainer: {
+    borderRadius: 15,
+    padding: 15,
+    backgroundColor: 'white',
+    marginHorizontal: 10
+  },
+  logo: {
+    width: 30,
+    height: 30
+  },
+});
