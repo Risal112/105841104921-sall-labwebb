@@ -95,14 +95,22 @@ const App = () => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Forgot password</Text>
+        <Text style={styles.title}>LOGIN</Text>
         <View style={styles.form}>
-        <Text style={{ fontSize:12, textAlign: 'flex-end',  fontFamily: 'MetroMedium' }}>Please, enter your email address. You will receive a link to create a new password via email.</Text>
-          <TextInputCostum placeholder="email" keyboardType="default" />
+          <TextInputCostum placeholder="Password" keyboardType="default" />
           <View style={{ justifyContent: 'flex-end', flexDirection: 'row', marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, textAlign: 'flex-end', marginLeft: 130, fontFamily: 'MetroMedium' }}>Already have an account?</Text>
           </View>
-          <Text style={{ fontSize: 12, textAlign: 'flex-end', fontFamily: 'MetroMedium' }}>Not a valid email address. Should be your@email.com</Text>
-          <ButtonCostum text="SEND" color="#C40C0C" />
+          <ButtonCostum text="LOGIN" color="#C40C0C" />
+        </View>
+      </View>
+      <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: 'MetroMedium' }}>Or login with social account</Text>
+      <View style ={styles.logoRow}>
+        <View style ={styles.logoContainer}>
+        <Image source={require('./assets/logo-google.png')} style={styles.logo} />
+        </View>
+        <View style ={styles.logoContainer}>
+        <Image source={require('./assets/logo-facebook.webp')} style={styles.logo} />
         </View>
       </View>
     </View>
