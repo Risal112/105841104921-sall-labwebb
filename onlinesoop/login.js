@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Image } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 const ButtonCustom = ({ text, color }) => {
   return (
@@ -84,22 +85,28 @@ const ButtonCostum = ({ text, color }) => {
 }
 
 const App = () => {
-  const [fontsLoaded] = useFonts({
+  const navigation = useNavigation();
+  // export default function App() {
+    const [dapatFont]= useFonts({
+      
+    });
+    if (!dapatFont) {
+      return <Text>Font tidak ditemukan......</Text>
+    }
 
-  });
-
-  if (!fontsLoaded) {
-    return <Text>Font tidak ditemukan...</Text>;
-  }
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>LOGIN</Text>
         <View style={styles.form}>
+          <TextInputCostum placeholder="Email" keyboardType="default" />
           <TextInputCostum placeholder="Password" keyboardType="default" />
           <View style={{ justifyContent: 'flex-end', flexDirection: 'row', marginBottom: 10 }}>
+          <TouchableOpacity onPress={()=>navigation.navigate('forgot')}>
             <Text style={{ fontSize: 15, textAlign: 'flex-end', marginLeft: 130, fontFamily: 'MetroMedium' }}>Already have an account?</Text>
+
+          </TouchableOpacity>
           </View>
           <ButtonCostum text="LOGIN" color="#C40C0C" />
         </View>

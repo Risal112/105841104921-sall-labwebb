@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Image } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
+import {useNavigation  } from '@react-navigation/native';
+
 
 const ButtonCustom = ({ text, color }) => {
   return (
@@ -84,29 +86,38 @@ const ButtonCostum = ({ text, color }) => {
 }
 
 const App = () => {
-  const [fontsLoaded] = useFonts({
+  const navigation =useNavigation();
+  // export default function App() {
+    const [dapatFont]= useFonts({
+      
+    });
+    if (!dapatFont) {
+      return <Text>Font tidak ditemukan......</Text>
+    }
 
-  });
-
-  if (!fontsLoaded) {
-    return <Text>Font tidak ditemukan...</Text>;
-  }
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>Sign up</Text>
         <View style={styles.form}>
-          <TextInputCostum placeholder="Name" keyboardType="default" />
-          <TextInputCostum placeholder="Email" keyboardType="email-address" />
+         <TextInputCostum placeholder="Name" keyboardType="default" />
+         <TextInputCostum placeholder="Email" keyboardType="default" />
           <TextInputCostum placeholder="Password" keyboardType="default" />
           <View style={{ justifyContent: 'flex-end', flexDirection: 'row', marginBottom: 10 }}>
-            <Text style={{ fontSize: 15, textAlign: 'flex-end', marginLeft: 130, fontFamily: 'MetroMedium' }}>Already have an account?</Text>
+        <TouchableOpacity onPress={()=> navigation.navigate('login')}>
+          <Text style={styles.ForgotPasswordText} 
+            >Already have an account?</Text>
+        </TouchableOpacity>
           </View>
           <ButtonCostum text="SIGN UP" color="#C40C0C" />
         </View>
       </View>
-      <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: 'MetroMedium' }}>Or login with social account</Text>
+      <Text style ={{
+        fontSize : 15,
+        textAlign : 'center',
+        fontFamily : 'MetroMedium'
+      }}>Or login with social account</Text>
       <View style ={styles.logoRow}>
         <View style ={styles.logoContainer}>
         <Image source={require('./assets/logo-google.png')} style={styles.logo} />
