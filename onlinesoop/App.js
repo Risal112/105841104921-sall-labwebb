@@ -1,17 +1,54 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import login from './login';
-import SignUp from './SingUp';
-import forgot from  './forgot';
+import LoginPage from './login';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeAktif from './assets/home-activated.png';
+import HomeInaktif from './assets/home-inactive.png';
+import ShopAktif from './assets/shop-activated.png';
+import ShopInaktif from './assets/shop-inactive.png';
 
-function HomeScreen({navigation}) {
+const Tab = createBottomTabNavigator();
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false, tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? HomeAktif : HomeInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="shop"
+        component={LoginPage}
+        options={{
+          headerShown: false, tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? ShopAktif : ShopInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-       <Text>Home Screen</Text> 
-      <Button title = "Ke Halaman Login" onPress={() => navigation.navigate('HomeScreen')}/> 
-     
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Login"
+        onPress={() => navigation.navigate('Login')}
+      />
     </View>
   );
 }
@@ -22,13 +59,12 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/> */}
-        <Stack.Screen name="SingUp" component={SignUp} options={{headerShown: false}}/>
-        <Stack.Screen name="login" component={login} options={{headerShown : false}}/>
-        <Stack.Screen name="forgot" component={forgot} options={{headerShown: false}}/>
+        <Stack.Screen name="Home" component={MyTabs} />
+        <Stack.Screen name="Login" component={LoginPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
 
 export default App;
