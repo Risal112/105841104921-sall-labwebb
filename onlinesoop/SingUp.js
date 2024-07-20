@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TextInput, Image, TouchableOpacity } from 'reac
 import { useFonts } from 'expo-font';
 import {useNavigation  } from '@react-navigation/native';
 
-
 const ButtonCustom = ({ text, color }) => {
   return (
     <View style={{

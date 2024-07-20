@@ -9,7 +9,7 @@ import forgot from  './forgot';
 function HomeScreen({navigation}) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-       <Text>Home Screen</Text> 
+       <Text>login</Text> 
       <Button title = "Ke Halaman Login" onPress={() => navigation.navigate('HomeScreen')}/> 
      
     </View>
@@ -22,7 +22,6 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/> */}
         <Stack.Screen name="SingUp" component={SignUp} options={{headerShown: false}}/>
         <Stack.Screen name="login" component={login} options={{headerShown : false}}/>
         <Stack.Screen name="forgot" component={forgot} options={{headerShown: false}}/>
