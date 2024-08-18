@@ -1,107 +1,82 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import ImageSlider from 'react-native-image-slider';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, ScrollView } from 'react-native';
 
-const App = () => {
-  const images = [
-    require('./assets/homee.jpeg'),
-    require('./assets/baju1.png'),
-    require('./assets/baju2.jpeg'),
-    require('./assets/baju3.jpeg'),
-    require('./assets/bajuputi.jpeg'),
-    require('./assets/kribot.jpeg'),
-    require('./assets/lurus.jpeg'),
-  ];
 
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.sliderContainer}>
-        <ImageSlider images={images} autoPlayWithInterval={3000} loop />
-      </View>
-      <View style={styles.saleBanner}>
-        <Text style={styles.saleText}>Fashion sale</Text>
-        <TouchableOpacity style={styles.checkButton}>
-          <Text style={styles.checkButtonText}>Check</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.newSection}>
-        <Text style={styles.newTitle}>New</Text>
-        <Text style={styles.newSubtitle}>You've never seen it before!</Text>
-        <ImageSlider
-          images={images}
-          customSlide={({ index, item, style, width }) => (
-            <View key={index} style={[style, styles.customSlide]}>
-              <Image source={item} style={styles.newItemImage} />
-              <Text style={styles.newItemText}>New Item {index + 1}</Text>
-            </View>
-          )}
-          style={styles.newItemsSlider}
-          autoPlayWithInterval={3000}
-          loop
-        />
-      </View>
-    </ScrollView>
-  );
-};
+class Home extends Component {
+    render() {
+        const mainImage = require('./assets/hom.jpeg');
+        const newImages = [
+            { source: require('./assets/lurus.jpeg'), title: 'Palestine flag', subtitle: '10$' },
+            { source: require('./assets/bajuputi.jpeg'), title: 'Palestine', subtitle: '12$' },
+            { source: require('./assets/pink.jpeg'), title: 'Shindaime', subtitle: '15$' },
+            { source: require('./assets/baju3.jpeg'), title: 'Flag', subtitle: '15$' },
+            
+        ];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  sliderContainer: {
-    height: 300,
-  },
-  saleBanner: {
-    alignItems: 'center',
-    marginTop: -50,
-  },
-  saleText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  checkButton: {
-    marginTop: 10,
-    backgroundColor: '#ff0000',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  checkButtonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  newSection: {
-    padding: 20,
-  },
-  newTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  newSubtitle: {
-    fontSize: 16,
-    color: '#888',
-    marginVertical: 5,
-  },
-  newItemsSlider: {
-    height: 200,
-  },
-  customSlide: {
-    alignItems: 'center',
-    width: 150,
-    marginRight: 10,
-  },
-  newItemImage: {
-    width: 150,
-    height: 150,
-    resizeMode: 'cover',
-  },
-  newItemText: {
-    marginTop: 10,
-    fontSize: 14,
-    textAlign: 'center',
-  },
-});
+        return (
+            <SafeAreaView style={{
+                flex: 1,ckgroundColor: '#ffffff',
+            }}>
+                <ScrollView>
+                    <View style={{position: 'relative',}}>
+                        <Image source={mainImage} style={{width: '100%',height: 400,resizeMode: 'cover',}} />
+                        <View style={{
+                            position: 'absolute',
+                            buttom: 40,
+                            left: 20,
+                            right: 20,
+                            alignItems: 'flex-start',
+                            marginTop: 270,
+                    
+                        }}>
+                            <Text style={{
+                                color: '#ffffff',
+                                fontSize: 40,
+                                fontWeight: 'bold',
+                            }}>Walpaper</Text>
+                            <TouchableOpacity style={{
+                                backgroundColor: 'red',
+                                paddingVertical: 10,
+                                paddingHorizontal: 40,
+                                marginTop: 10,
+                                borderRadius: 25,
+                        
+                            }}
+                            onPress={()=> this.props.navigation.navigate('Shop')}>
+                                <Text style={{
+                                    color: '#ffffff',
+                                    fontSize: 16,
+                                }}>Check</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <View style={{padding: 20,}}>
+                        <Text style={{fontSize: 24,fontWeight: 'bold',}}>New</Text>
+                        <Text style={{
+                            color: '#888888',
+                            marginVertical: 10,
+                            fontSize: 20,
+                        }}>You've never seen it before!</Text>
+                        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flexDirection: 'row',}}>
+                            {newImages.map((item, index) => (
+                                <View key={index} style={{marginRight: 16, alignItems: 'center',}}>
+                                    <Image source={item.source} style={{
+                                        width: 150,
+                                        height: 200,
+                                        resizeMode: 'cover',
+                                        borderRadius: 10,
+                                
+                                    }} />
+                                    <Text style={{fontSize: 14, fontWeight: 'bold', marginTop: 5,}}>{item.title}</Text>
+                                    <Text style={{fontSize: 15, color: 'red',}}>{item.subtitle}</Text>
+                                </View>
+                            ))}
+                        </ScrollView>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        );
+    }
+}
 
-export default App
+export default Home;
