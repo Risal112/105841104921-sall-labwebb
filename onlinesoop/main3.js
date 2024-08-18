@@ -10,7 +10,7 @@ const main = () => {
       backgroundColor: '#FFFFFF',
       }}>
         <Image
-          source={require('./assets/hom.jpeg')}
+          source={require('./assets/searchred.png')}
           style={{
             width: 45,
             height: 45,

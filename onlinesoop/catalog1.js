@@ -52,7 +52,7 @@ const katalog1 = () => {
       stars.push(
         <Image
           key={i}
-          source={i <= rating ? require('./assets/mr.jpeg') : require('./assets/kribot.jpeg')}
+          source={i <= rating ? require('./assets/star.png') : require('./assets/starno.png')}
           style={{ width: 18, height: 18 }}
         />
       );
@@ -82,11 +82,11 @@ const katalog1 = () => {
     <View style={{ flex: 1, backgroundColor: '#fff', padding: 12 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={{ paddingRight: 8 }}>
-          <Image source={require('./assets/puti.jpeg')} style={{ width: 20, height: 20, tintColor: '#333333' }} />
+          <Image source={require('./assets/star.png')} style={{ width: 20, height: 20, tintColor: '#333333' }} />
         </TouchableOpacity>
         <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#333333', flex: 1, textAlign: 'center' }}></Text>
         <TouchableOpacity style={{ paddingLeft: 8 }}>
-          <Image source={require('./assets/kribot.jpeg')} style={{ width: 20, height: 20, tintColor: '#333333' }} />
+          <Image source={require('./assets/star.png')} style={{ width: 20, height: 20, tintColor: '#333333' }} />
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
@@ -128,7 +128,7 @@ const katalog1 = () => {
               <Text style={{ fontSize: 16, fontWeight: 'bold' }}>${item.price}</Text>
             </View>
             <TouchableOpacity style={{ padding: 8 }} onPress={() => toggleLove(index)}>
-              <Image source={item.loved ? require('./assets/mr.jpeg') : require('./assets/lk.png')} style={{ width: 28, height: 28 }} />
+              <Image source={item.loved ? require('./assets/favorites-activated.png') : require('./assets/favorites-inactive.png')} style={{ width: 28, height: 28 }} />
             </TouchableOpacity>
           </View>
         )}
