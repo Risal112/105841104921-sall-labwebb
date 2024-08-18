@@ -6,7 +6,7 @@ function ShopScreen() {
     <ScrollView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
-        <Image source={require('./assets/homee.jpeg')} style={styles.headerImage} />
+        <Image source={require('./assets/bajuputi.jpeg')} style={styles.headerImage} />
         <View style={styles.headerTextContainer}>
           <Text style={styles.headerText}>Street clothes</Text>
         </View>
